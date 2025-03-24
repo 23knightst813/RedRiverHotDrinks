@@ -8,9 +8,8 @@
 A simple React application simulating the operation of a hot drinks machine.  
 - Built entirely with React for simplicity and efficiency.
 - Uses Json To store the drinks and steps ( for now at least )
-<br/>
-~~No Idea how people can justify using  a UI Library And a CSS Framework~~
 
+~~No Idea how people can justify using a UI Library And a CSS Framework~~
 ---
 
 ## To Access The Deployed App
