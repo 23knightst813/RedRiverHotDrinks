@@ -98,13 +98,13 @@ function App() {
       <div className="drinks-container">
         {/* Map over the drinks object and display each drink name as a clickable element */}
         {Object.keys(drinks).map((drinkName) => (
-          <h3
+          <h2
             key={drinkName}
             // When a drink is clicked, call the handleDrinkClick function with the drink name
             onClick={() => handleDrinkClick(drinkName)}
           >
             {drinkName}
-          </h3>
+          </h2>
         ))}
       </div>
       {/* If a drink is selected, display the popup with the selected drink */}
