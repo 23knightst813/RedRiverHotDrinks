@@ -30,7 +30,8 @@ Visit the deployed app [here](https://red-river-hot-drinks.vercel.app/)
 
 ##Google LightHouse
 
-![image](https://github.com/user-attachments/assets/f5b099fd-582e-4925-9364-65fd7cc65607)
+![image](https://github.com/user-attachments/assets/e3c5bf62-3759-4368-a63b-728e9b4daa1c)
+
 
 ---
 ## Future Developments
