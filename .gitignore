@@ -1,4 +1,4 @@
-# Logs
+# Frontend - Node.js
 logs
 *.log
 npm-debug.log*
@@ -11,6 +11,26 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Backend - Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pythonenv*
+.env
+.coverage
+htmlcov/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
 
 # Editor directories and files
 .vscode/*
