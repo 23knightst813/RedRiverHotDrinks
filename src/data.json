@@ -1,0 +1,21 @@
+{
+    "Lemon Tea": [
+      "Boil some water",
+      "Steep the water in the tea",
+      "Pour tea in the cup",
+      "Add lemon"
+    ],
+    "Coffee": [
+      "Boil some water",
+      "Add coffee grounds",
+      "Pour water over grounds",
+      "Let it brew",
+      "Pour coffee in the cup"
+    ],
+    "Hot Chocolate": [
+      "Boil some water",
+      "Add chocolate powder",
+      "Pour water in the cup",
+      "Mix well"
+    ]
+  }
