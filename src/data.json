@@ -1,21 +1,21 @@
 {
     "Lemon Tea": [
-      "Boil some water",
-      "Steep the water in the tea",
-      "Pour tea in the cup",
-      "Add lemon"
+      "Boiling water",
+      "Steeping the water in the tea",
+      "Pouring tea in the cup",
+      "Adding lemon"
     ],
     "Coffee": [
-      "Boil some water",
-      "Add coffee grounds",
-      "Pour water over grounds",
-      "Let it brew",
-      "Pour coffee in the cup"
+      "Boiling water",
+      "Adding coffee grounds",
+      "Pouring water over grounds",
+      "Letting it brew",
+      "Pouring coffee in the cup"
     ],
     "Hot Chocolate": [
-      "Boil some water",
-      "Add chocolate powder",
-      "Pour water in the cup",
-      "Mix well"
+      "Boiling water",
+      "Adding chocolate powder",
+      "Pouring water in the cup",
+      "Mixing well"
     ]
   }
