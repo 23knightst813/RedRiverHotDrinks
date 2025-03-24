@@ -116,7 +116,9 @@ function App() {
         />
       )}
       {/* Display the plus icon at the bottom of the page, indicating that more drinks can be added */}
-      <img src={plusIcon} alt="Plus" className="plus-icon" />
+      <div title="Coming soon">
+        <img src={plusIcon} alt="Plus" className="plus-icon" />
+      </div>
     </div>
   );
 }
