@@ -26,9 +26,13 @@ Visit the deployed app [here](https://red-river-hot-drinks.vercel.app/)
 ### Backend Setup
 1. Make sure Python is installed (3.7+ recommended)
 2. Navigate to the backend directory: `cd backEnd`
-3. Install dependencies: `pip install fastapi uvicorn` 
-4. Run the backend server: `uvicorn main:app --reload`
-5. API will be available at `http://localhost:8000`
+3. Create a virtual environment: `python -m venv venv`
+4. Activate the virtual environment:
+  - On Windows: `venv\Scripts\activate`
+  - On macOS/Linux: `source venv/bin/activate`
+5. Install dependencies: `pip install fastapi uvicorn`
+6. Run the backend server: `uvicorn main:app --reload`
+7. API will be available at `http://localhost:8000`
 
 ### Frontend Setup
 1. Navigate to the frontend directory: `cd fontEnd`
