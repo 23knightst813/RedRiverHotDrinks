@@ -59,32 +59,162 @@ function Popup({ title, steps, onClose }) {
   );
 }
 
+// New component for adding a new drink
+function AddDrinkPopup({ onClose, onDrinkAdded }) {
+  const [drinkName, setDrinkName] = useState("");
+  const [steps, setSteps] = useState([""]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+
+  const addStep = () => {
+    setSteps([...steps, ""]);
+  };
+
+  const updateStep = (index, value) => {
+    const newSteps = [...steps];
+    newSteps[index] = value;
+    setSteps(newSteps);
+  };
+
+  const removeStep = (index) => {
+    if (steps.length > 1) {
+      const newSteps = steps.filter((_, i) => i !== index);
+      setSteps(newSteps);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!drinkName.trim()) {
+      setError("Please enter a drink name");
+      return;
+    }
+    
+    // Filter out empty steps
+    const filteredSteps = steps.filter(step => step.trim() !== "");
+    if (filteredSteps.length === 0) {
+      setError("Please add at least one step");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`${backendUrl}/drinks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: drinkName.trim(),
+          steps: filteredSteps,
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Failed to add drink");
+      }
+      
+      // Call the callback to refresh drinks
+      onDrinkAdded();
+      onClose();
+    } catch (err) {
+      setError(err.message || "Failed to add drink. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="popup-overlay">
+      <div className="popup">
+        <h4>Add New Drink</h4>
+        
+        {error && <p className="error-message">{error}</p>}
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="drinkName">Drink Name:</label>
+            <input
+              type="text"
+              id="drinkName"
+              value={drinkName}
+              onChange={(e) => setDrinkName(e.target.value)}
+              placeholder="e.g. Hot Cocoa"
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Steps:</label>
+            {steps.map((step, index) => (
+              <div key={index} className="step-input-row">
+                <input
+                  type="text"
+                  value={step}
+                  onChange={(e) => updateStep(index, e.target.value)}
+                  placeholder={`Step ${index + 1}`}
+                />
+                <button 
+                  type="button" 
+                  className="remove-step"
+                  onClick={() => removeStep(index)}
+                  disabled={steps.length <= 1}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button type="button" className="add-step" onClick={addStep}>
+              + Add Step
+            </button>
+          </div>
+          
+          <div className="form-actions">
+            <button type="button" onClick={onClose}>
+              Cancel
+            </button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? <LoadingSpinner /> : "Save Drink"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 // This is the main App component that displays a list of drinks and handles the selection of a drink
 function App() {
   const [selectedDrink, setSelectedDrink] = useState(null);
   const [drinks, setDrinks] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAddDrinkForm, setShowAddDrinkForm] = useState(false);
   
   // Fetch drinks from API
-  useEffect(() => {
-    async function fetchDrinks() {
-      try {
-        setLoading(true);
-        const response = await fetch(`${backendUrl}/drinks`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setDrinks(data);
-      } catch (e) {
-        console.error("Error fetching drinks:", e);
-        setError("Failed to load drinks. Please try again later.");
-      } finally {
-        setLoading(false);
+  const fetchDrinks = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${backendUrl}/drinks`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const data = await response.json();
+      setDrinks(data);
+    } catch (e) {
+      console.error("Error fetching drinks:", e);
+      setError("Failed to load drinks. Please try again later.");
+    } finally {
+      setLoading(false);
     }
-    
+  };
+  
+  useEffect(() => {
     fetchDrinks();
   }, []);
 
@@ -96,6 +226,22 @@ function App() {
   // Handles the closing of the popup by setting the selected drink to null
   const handleClosePopup = () => {
     setSelectedDrink(null);
+  };
+  
+  // Handle plus icon click
+  const handleAddDrinkClick = () => {
+    setShowAddDrinkForm(true);
+  };
+  
+  // Handle closing the add drink form
+  const handleCloseAddDrinkForm = () => {
+    setShowAddDrinkForm(false);
+  };
+  
+  // Handle drink added successfully
+  const handleDrinkAdded = () => {
+    // Refresh the drinks list
+    fetchDrinks();
   };
 
   // Return the main App component with a title, a list of drinks, and a popup for the selected drink
@@ -125,8 +271,15 @@ function App() {
         />
       )}
       
-      <div title="Coming soon">
-        <img src={plusIcon} alt="Plus" className="plus-icon" />
+      {showAddDrinkForm && (
+        <AddDrinkPopup
+          onClose={handleCloseAddDrinkForm}
+          onDrinkAdded={handleDrinkAdded}
+        />
+      )}
+      
+      <div onClick={handleAddDrinkClick}>
+        <img src={plusIcon} alt="Add Drink" className="plus-icon" />
       </div>
     </div>
   );

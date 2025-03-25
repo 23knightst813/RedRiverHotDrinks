@@ -7,7 +7,7 @@ app = FastAPI()
 # Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost", "https://hot-drink-front-end.vercel.app"],  # Allow localhost and production frontend URL
+    allow_origins=["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:8080", "http://localhost", "https://hot-drink-front-end.vercel.app"],  # Allow common development ports
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
