@@ -9,7 +9,7 @@ A full-stack application simulating the operation of a hot drinks machine.
 - Frontend built with React for simplicity and efficiency
 - Backend built with FastAPI providing a RESTful API
 - SQLite database for storing drinks and their preparation steps
-- Frontend communicates with backend to fetch available drinks and steps
+- Frontend communicates with backend to fetch available drinks and steps, as well as to add new drinks
 
 ~~No Idea how people can justify using a UI Library And a CSS Framework~~
 
@@ -59,7 +59,6 @@ Visit the deployed app [here](https://hot-drink-front-end.vercel.app/)
 ---
 ## Future Developments
 
-- **Add Drink Addition** 
 - **Ingredient Inventory System**  
 - **Weather-Based Recommendations** (🤷‍♂️)
 
