@@ -68,8 +68,7 @@ function App() {
     async function fetchDrinks() {
       try {
         setLoading(true);
-        // Adjust the URL based on your deployment setup
-        const response = await fetch('http://localhost:8000/drinks');
+        const response = await fetch(`${backendUrl}/drinks`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
