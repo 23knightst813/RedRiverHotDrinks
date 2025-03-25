@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import plusIcon from "./assets/PlusIcon.svg";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 // This component is a loading spinner that cycles through a set of frames providing viusal feedback to the user
 function LoadingSpinner() {
   const spinnerFrames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
