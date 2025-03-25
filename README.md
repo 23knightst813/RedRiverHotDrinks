@@ -17,7 +17,7 @@ A full-stack application simulating the operation of a hot drinks machine.
 
 ## To Access The Deployed App
 
-Visit the deployed app [here](https://red-river-hot-drinks.vercel.app/)
+Visit the deployed app [here](https://hot-drink-front-end.vercel.app/)
 
 ---
 
@@ -30,15 +30,17 @@ Visit the deployed app [here](https://red-river-hot-drinks.vercel.app/)
 4. Activate the virtual environment:
   - On Windows: `venv\Scripts\activate`
   - On macOS/Linux: `source venv/bin/activate`
-5. Install dependencies: `pip install fastapi uvicorn`
+5. Install dependencies: `pip install -r requirements.txt`
 6. Run the backend server: `uvicorn main:app --reload`
 7. API will be available at `http://localhost:8000`
 
 ### Frontend Setup
 1. Navigate to the frontend directory: `cd fontEnd`
-2. Install dependencies: `npm install`
-3. Run the app: `npm run dev`
-4. Visit `http://localhost:5173` in your browser
+2. Create a `.env` file with the following content:
+    `VITE_BACKEND_URL=http://localhost:8000`
+3. Install dependencies: `npm install`
+4. Run the app: `npm run dev`
+5. Visit `http://localhost:5173` in your browser
 
 ---
 

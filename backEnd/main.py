@@ -1,8 +1,6 @@
-from typing import Union, Dict, List
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
-import json
 
 app = FastAPI()
 
